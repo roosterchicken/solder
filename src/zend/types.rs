@@ -127,31 +127,31 @@ impl Zval {
 
 	/// Returns if a zval is undefined.
 	/// Undefined means that this zval holds no value
-	pub fn is_undef(self: &Self) -> bool {
+	pub fn is_undef(&self) -> bool {
 		self.type_info.is_from_type(InternalPhpTypes::UNDEF)
 	}
 
 	/// Returns if a zval is null
-	pub fn is_null(self: &Self) -> bool {
+	pub fn is_null(&self) -> bool {
 		self.type_info.is_from_type(InternalPhpTypes::NULL)
 	}
 
 	/// Returns if a zval is a integer (i64)
-	pub fn is_integer(self: &Self) -> bool { self.type_info.is_from_type(InternalPhpTypes::LONG) }
+	pub fn is_integer(&self) -> bool { self.type_info.is_from_type(InternalPhpTypes::LONG) }
 
 	/// Returns if a zval is a float (f64)
-	pub fn is_float(self: &Self) -> bool { self.type_info.is_from_type(InternalPhpTypes::DOUBLE) }
+	pub fn is_float(&self) -> bool { self.type_info.is_from_type(InternalPhpTypes::DOUBLE) }
 
 	/// Returns if a zval is string
-	pub fn is_string(self: &Self) -> bool {
+	pub fn is_string(&self) -> bool {
 		self.type_info.is_from_type(InternalPhpTypes::STRING)
 	}
 
 	/// Returns if a zval is array (Vec<>)
-	pub fn is_array(self: &Self) -> bool { self.type_info.is_from_type(InternalPhpTypes::ARRAY) }
+	pub fn is_array(&self) -> bool { self.type_info.is_from_type(InternalPhpTypes::ARRAY) }
 
 	/// Returns if a zval is indirect. Indirect is an internal type.
-	fn is_indirect(self: &Self) -> bool { self.type_info.is_from_type(InternalPhpTypes::INDIRECT) || self.type_info.is_from_type(InternalPhpTypes::REFERENCE) }
+	fn is_indirect(&self) -> bool { self.type_info.is_from_type(InternalPhpTypes::INDIRECT) || self.type_info.is_from_type(InternalPhpTypes::REFERENCE) }
 
 	fn handle_indirect(self) -> Zval {
 		if self.is_indirect() {
@@ -307,7 +307,7 @@ impl Drop for Zval {
 }
 
 impl TypeInfoUnion {
-	fn is_from_type(self: &Self, php_type: InternalPhpTypes) -> bool {
+	fn is_from_type(&self, php_type: InternalPhpTypes) -> bool {
 		unsafe {self.type_info & 0x000F == php_type as u32}
 	}
 }
