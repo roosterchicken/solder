@@ -410,17 +410,6 @@ impl <T: FromPhpZval> FromPhpZval for Vec<T> {
 
 pub fn free_zend_string(zend_string: *mut ZendString) {
 	let ref_counted = unsafe{&(*zend_string).gc};
-	/*if !check_gc_flags(ref_counted, 6) {
-		if should_free(unsafe{&mut (*zend_string).gc}) {
-			if check_gc_flags(ref_counted, 7) {
-				unsafe{free(zend_string as *mut c_void)}
-				return;
-			} else {
-				unsafe{_efree(zend_string as *mut c_void)}
-				return;
-			};
-		}
-	}*/
 	if !check_gc_flags(ref_counted, 6) && should_free(unsafe{&mut (*zend_string).gc}) {
 		if check_gc_flags(ref_counted, 7) {
 			unsafe{free(zend_string as *mut c_void)}
