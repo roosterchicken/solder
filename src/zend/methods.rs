@@ -78,11 +78,11 @@ macro_rules! php_parse_parameters {
 	}
 }
 pub trait PhpParseParameters {
-    fn parse_parameters(self: &mut Self);
+    fn parse_parameters(&mut self);
 }
 
 impl PhpParseParameters for [&mut Zval; 1] {
-    fn parse_parameters(self: &mut Self) {
+    fn parse_parameters(&mut self) {
         let value_1 = ZendValue{long_value: 0};
         unsafe {
             zend_parse_parameters(
@@ -96,7 +96,7 @@ impl PhpParseParameters for [&mut Zval; 1] {
 }
 
 impl PhpParseParameters for [&mut Zval; 2] {
-    fn parse_parameters(self: &mut Self) {
+    fn parse_parameters(&mut self) {
         let value_1 = ZendValue{long_value: 0};
         let value_2 = ZendValue{long_value: 0};
         unsafe {
@@ -113,7 +113,7 @@ impl PhpParseParameters for [&mut Zval; 2] {
 }
 
 impl PhpParseParameters for [&mut Zval; 3] {
-    fn parse_parameters(self: &mut Self) {
+    fn parse_parameters(&mut self) {
         let value_1 = ZendValue{long_value: 0};
         let value_2 = ZendValue{long_value: 0};
         let value_3 = ZendValue{long_value: 0};
@@ -133,7 +133,7 @@ impl PhpParseParameters for [&mut Zval; 3] {
 }
 
 impl PhpParseParameters for [&mut Zval; 4] {
-    fn parse_parameters(self: &mut Self) {
+    fn parse_parameters(&mut self) {
         let value_1 = ZendValue{long_value: 0};
         let value_2 = ZendValue{long_value: 0};
         let value_3 = ZendValue{long_value: 0};
@@ -156,7 +156,7 @@ impl PhpParseParameters for [&mut Zval; 4] {
 }
 
 impl PhpParseParameters for [&mut Zval; 5] {
-    fn parse_parameters(self: &mut Self) {
+    fn parse_parameters(&mut self) {
         let value_1 = ZendValue{long_value: 0};
         let value_2 = ZendValue{long_value: 0};
         let value_3 = ZendValue{long_value: 0};
